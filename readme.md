@@ -34,7 +34,7 @@ The API runs on http://localhost:5000.
 
 ### Frontend
 1. Install dependencies:
-	- cd TaskFlow
+	- cd Client_Side
 	- npm install
 2. Start the dev server:
 	- npm run dev
