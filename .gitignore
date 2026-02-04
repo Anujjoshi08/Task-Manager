@@ -1,6 +1,9 @@
 # Backend
 backend/node_modules/
 backend/.env
+.env
+.env.local
+
 
 # Frontend
 TaskFlow/node_modules/
