@@ -1,6 +1,5 @@
 const API_URL = import.meta.env.VITE_API_URL;
 
-
 export const loginUser = async (data) => {
   const res = await fetch(`${API_URL}/auth/login`, {
     method: "POST",
@@ -34,8 +33,7 @@ export const getTasks = async (token) => {
 };
 
 export const createTask = async (token, data) => {
-  console.log(`Bearer ${token}`);
-  const res = await fetch("http://localhost:5000/api/tasks", {
+  const res = await fetch(`${API_URL}/tasks`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -47,7 +45,7 @@ export const createTask = async (token, data) => {
 };
 
 export const updateTask = async (token, id, data) => {
-  const res = await fetch(`http://localhost:5000/api/tasks/${id}`, {
+  const res = await fetch(`${API_URL}/tasks/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -61,12 +59,14 @@ export const updateTask = async (token, id, data) => {
 export const deleteTask = async (token, id) => {
   const res = await fetch(`${API_URL}/tasks/${id}`, {
     method: "DELETE",
-    headers: { Authorization: `Bearer ${token}` },
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   });
-  
+
   if (!res.ok) {
     throw new Error(`Failed to delete task: ${res.statusText}`);
   }
-  
+
   return res.json();
 };
