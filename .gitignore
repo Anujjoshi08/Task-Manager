@@ -1,0 +1,10 @@
+# Backend
+backend/node_modules/
+backend/.env
+
+# Frontend
+TaskFlow/node_modules/
+TaskFlow/.env
+
+# System
+.DS_Store
