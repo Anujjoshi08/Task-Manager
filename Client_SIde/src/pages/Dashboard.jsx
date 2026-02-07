@@ -9,7 +9,7 @@ const Dashboard = () => {
   const [search, setSearch] = useState("");
   const [tasks, setTasks] = useState([]);
   const [openTaskModal, setOpenTaskModal] = useState(false);
-  const [selectedTask, setSelectedTask] = useState(null); // 👈 important
+  const [selectedTask, setSelectedTask] = useState(null); //  important
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
@@ -23,7 +23,7 @@ const Dashboard = () => {
       const data = await getTasks(token);
       setTasks(data);
     } catch (error) {
-      // 🔥 TOKEN EXPIRED OR INVALID
+      //  TOKEN EXPIRED OR INVALID
       console.error("Auth error:", error);
       localStorage.removeItem("token");
       navigate("/login");
@@ -49,20 +49,22 @@ const Dashboard = () => {
     setOpenTaskModal(true);
   };
 
-  // 💾 Save (Create or Edit)
+  //  Save (Create or Edit)
   const handleSaveTask = async ({ title, description }) => {
-    console.log("SAVING:", title, description);
-    console.log(token);
+  console.log("SAVING:", title, description);
+  console.log(token);
 
-    if (selectedTask) {
-      await updateTask(token, selectedTask.id, { title, description });
-    } else {
-      await createTask(token, { title, description });
-    }
+  if (selectedTask) {
+    // ✅ FIXED: use _id instead of id
+    await updateTask(token, selectedTask._id, { title, description });
+  } else {
+    await createTask(token, { title, description });
+  }
 
-    setOpenTaskModal(false);
-    fetchTasks();
-  };
+  setOpenTaskModal(false);
+  fetchTasks();
+ };
+
 
   const handleDeleteTask = async (id) => {
     if (window.confirm("Delete task?")) {
