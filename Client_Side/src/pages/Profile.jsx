@@ -10,7 +10,7 @@ export default function Profile() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/profile", {
+      .get(`${import.meta.env.VITE_API_URL}/profile`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -25,7 +25,7 @@ export default function Profile() {
     e.preventDefault();
 
     await axios.put(
-      "http://localhost:5000/api/profile",
+      `${import.meta.env.VITE_API_URL}/profile`,
       { name, email },
       {
         headers: {
