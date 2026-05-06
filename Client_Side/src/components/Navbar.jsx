@@ -8,12 +8,13 @@ import { NavLink } from "react-router-dom";
 const Navbar = () => {
   const [name, setName] = useState("User");
   const token = localStorage.getItem("token");
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchProfile = async () => {
       if (!token) return;
       try {
-        const res = await fetch("http://localhost:5000/api/profile", {
+        const res = await fetch(`${apiUrl}/profile`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
